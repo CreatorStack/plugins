@@ -135,7 +135,6 @@ static FlutterError *getFlutterError(NSError *error) {
       result(error != nil ? getFlutterError(error) : @{
         @"idToken" : authentication.idToken,
         @"accessToken" : authentication.accessToken,
-        @"serverAuthCode": currentUser.serverAuthCode,
       });
     }];
   } else if ([call.method isEqualToString:@"signOut"]) {
@@ -248,7 +247,8 @@ static FlutterError *getFlutterError(NSError *error) {
         @"displayName" : user.profile.name ?: [NSNull null],
         @"email" : user.profile.email ?: [NSNull null],
         @"id" : user.userID ?: [NSNull null],
-        @"photoUrl" : [photoUrl absoluteString] ?: [NSNull null]
+        @"photoUrl" : [photoUrl absoluteString] ?: [NSNull null],
+        @"serverAuthCode" : user.serverAuthCode ?: [NSNull null]
       }
                          error:nil];
     }
